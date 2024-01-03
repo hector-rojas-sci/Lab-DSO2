@@ -1,0 +1,23 @@
+name: GOAT Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "Preparar codigo"
+        uses: actions/checkout@v4
+
+      - name: "Instalar Java"
+        uses: actions/setup-java@v3
+        with:
+          distribution: "temurin"
+          java-version: "17"
+
+      - name: "Compilacion del codigo"
+        run: ./mvnw clean install
